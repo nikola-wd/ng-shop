@@ -1,0 +1,19 @@
+<div class="field has-addons">
+  <p class="control">
+    <button type="button" class="button" (click)="onValSub()" [disabled]="minDisabled">
+      <span class="icon is-small">
+        <i class="fas fa-minus"></i>
+      </span>
+    </button>
+  </p>
+  <p class="control">
+    <input class="input has-text-centered" type="text" [value]="val" />
+  </p>
+  <p class="control">
+    <button type="button" class="button" (click)="onValAdd()">
+      <span class="icon is-small">
+        <i class="fas fa-plus"></i>
+      </span>
+    </button>
+  </p>
+</div>

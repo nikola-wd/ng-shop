@@ -1,0 +1,4 @@
+<div class="notification" [ngClass]="{'is-primary': notificationType, 'is-danger': !notificationType}" *ngIf="notificationState">
+  <button class="delete" (click)="notificationState = false"></button>
+  {{ productName }}, {{ notificationType ? 'added to' : 'removed from' }} cart.
+</div>

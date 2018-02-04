@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  font-family: 'Ubuntu',
+  sans-serif;
+}
+
+
+
+.navbar.is-black .navbar-start>a.navbar-item:hover,
+.navbar.is-black .navbar-start>a.navbar-item.is-active,
+.navbar.is-black .navbar-start .navbar-link:hover,
+.navbar.is-black .navbar-start .navbar-link.is-active,
+.navbar.is-black .navbar-end>a.navbar-item:hover,
+.navbar.is-black .navbar-end>a.navbar-item.is-active,
+.navbar.is-black .navbar-end .navbar-link:hover,
+.navbar.is-black .navbar-end .navbar-link.is-active {
+  background-color: #ffdd57;
+  color: #000;
+}

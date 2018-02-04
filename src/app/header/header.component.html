@@ -1,0 +1,43 @@
+<nav class="navbar is-black is-fixed-top">
+  <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item logo" routerLink="/">
+          ng<b>Shop</b>
+        </a>
+        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a
+            class="navbar-item"
+            routerLink="/"
+            routerLinkActive="is-active"
+            [routerLinkActiveOptions]="{exact: true}">
+            <span class="icon">
+              <i class="fas fa-home"></i>
+            </span>
+            Home
+          </a>
+          <a class="navbar-item" routerLink="/products" routerLinkActive="is-active">
+            <span class="icon">
+              <i class="fas fa-shopping-bag"></i>
+            </span>
+            Products
+          </a>
+          <a class="navbar-item" routerLink="/contact" routerLinkActive="is-active">
+            <span class="icon">
+              <i class="fas fa-envelope-open"></i>
+            </span>
+            Contact
+          </a>
+        </div>
+
+        <app-cartmini class="navbar-end mini-cart-wrap"></app-cartmini>
+      </div>
+  </div>
+</nav>

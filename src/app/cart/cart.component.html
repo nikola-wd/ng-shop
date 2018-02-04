@@ -1,0 +1,85 @@
+<h1 class="has-text-centered">Your Cart</h1>
+
+<div class="columns">
+  <ng-container *ngIf="cartProducts.length">
+    <div class="column is-three-thirds">
+      <table class="table is-fullwidth">
+        <thead>
+          <tr>
+            <th colspan="5">Items total: 5</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of cartProducts; let i = index">
+            <td class="cart-img">
+              <img [src]="product.imagePath" [alt]="product.name" />
+            </td>
+            <td class="cart-desc">
+              <h2>
+                <strong class="has-text-warning">{{ product.name }}</strong>
+              </h2>
+              <p>{{ product.description }}</p>
+            </td>
+            <td>
+              <div>
+                <app-number-input
+                  [val]="product.qty"
+                  (valAdd)="onValAdd(product)"
+                  (valSub)="onValSub(product)"
+                  [minDisabled]="product.qty === 1"
+                ></app-number-input>
+              </div>
+            </td>
+            <td>
+              <div>
+                 {{ product.price | currency }}
+              </div>
+            </td>
+            <td>
+              <div>
+                <span class="icon has-text-danger" (click)="removeCartProduct(i)">
+                  <i class="fas fa-trash-alt"></i>
+                </span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="column is-one-third">
+      <div class="panel">
+        <p class="panel-heading has-text-centered">
+          <b>Total price: {{ cartTotal | currency }}</b>
+        </p>
+        <div class="panel-block has-text-centered">
+          <a class="button is-warning" style="cursor: pointer;" routerLink="/products">
+            <span class="icon">
+              <i class="fas fa-cart-plus"></i>
+            </span>&nbsp;
+            Add more items
+          </a>
+
+          <a class="button is-danger emptyCartBtn" style="cursor: pointer;" (click)="emptyCart()">
+            <span class="icon">
+              <i class="fas fa-trash-alt"></i>
+            </span>&nbsp; Empty Cart
+          </a>
+        </div>
+        <div class="panel-block panel-footer has-text-centered">
+          <a class="button is-success" style="cursor: pointer;" (click)="onCheckout()">
+            <span class="icon">
+              <i class="fas fa-check"></i>
+            </span>&nbsp;
+            Checkout
+          </a>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="column" *ngIf="!cartProducts.length">
+    <h2 class="has-text-centered">You Cart is Empty</h2>
+
+    <p class="has-text-centered">Buy some <a class="has-text-danger" routerLink="/products" style="cursor: pointer">products</a></p>
+  </div>
+</div>

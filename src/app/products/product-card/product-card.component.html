@@ -1,0 +1,34 @@
+<div class="card">
+  <header class="card-header is-black">
+    <p class="card-header-title has-text-warning">
+      {{ product.name }}
+    </p>
+    <span class="card-header-icon has-text-grey-light">
+      <small>{{ product.price | currency }}</small>
+    </span>
+  </header>
+  <div class="card-image">
+    <figure class="image is-4by3">
+      <img [src]="product.imagePath" [alt]="product.name">
+    </figure>
+  </div>
+  <div class="card-content">
+    <div class="content">
+       {{ product.description }}
+    </div>
+  </div>
+  <footer class="card-footer">
+    <a class="card-footer-item has-text-info" [routerLink]="['/products', product.id]">
+      <span class="icon">
+        <i class="fas fa-search-plus"></i>
+      </span>
+      View
+    </a>
+    <a class="card-footer-item has-text-success" style="cursor: pointer;" (click)="onAddToCart(product)">
+      <span class="icon">
+        <i class="fas fa-cart-plus"></i>
+      </span>
+      Add to Cart
+    </a>
+  </footer>
+</div>

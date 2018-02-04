@@ -1,0 +1,39 @@
+<div class="columns">
+  <div class="column is-two-thirds">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          {{ product.name }}
+        </p>
+        <span class="card-header-icon">
+          <small>{{ product.price | currency }}</small>
+        </span>
+      </header>
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img [src]="product.imagePathLg" [alt]="product.name">
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="content">
+          {{ product.description }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column is-one-third">
+    <a class="button is-light" routerLink="/products">
+      <span class="icon">
+        <i class="fas fa-arrow-left"></i>
+      </span>&nbsp; Back to Products
+    </a>
+
+    <hr>
+
+    <a class="button is-success" (click)="addToCart(product)">
+      <span class="icon">
+        <i class="fas fa-cart-plus"></i>
+      </span>&nbsp; Add to Cart
+    </a>
+  </div>
+</div>
