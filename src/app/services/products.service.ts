@@ -70,7 +70,7 @@ export class ProductsService {
 
 
   cartProductManipulate(product: Product, increase: boolean = false) {
-    const manipulatedProduct = this.cartAddedProducts.find(mp => mp === product);
+    const manipulatedProduct = this.cartAddedProducts.slice().find(mp => mp === product);
     increase ? manipulatedProduct.qty++ : manipulatedProduct.qty--;
     this.calculateCartTotal();
     this.cartTotalEmitter.emit(this.cartTotal);
@@ -84,7 +84,6 @@ export class ProductsService {
     this.cartAdditionEmitter.emit(this.cartAddedProducts.slice());
     this.calculateCartTotal();
     this.cartTotalEmitter.emit(this.cartTotal);
-
     this.addToast(false, removedProductName, false);
   }
 
