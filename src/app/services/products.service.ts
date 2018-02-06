@@ -1,8 +1,10 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastyService, ToastyConfig, ToastyComponent, ToastOptions, ToastData } from 'ng2-toasty';
+
 
 import { Product } from '../products/product.model';
 import { ProductsDataBaseService } from './products-data-base.service';
-import { NotificationService } from './notification.service';
 
 @Injectable()
 export class ProductsService {
@@ -15,7 +17,11 @@ export class ProductsService {
   private selectedProduct: Product;
 
 
-  constructor(private prodDB: ProductsDataBaseService, private notifService: NotificationService) { }
+  constructor(
+    private prodDB: ProductsDataBaseService,
+    private router: Router,
+    private toastyService: ToastyService
+  ) { }
 
 
   getAllProducts() {
@@ -40,7 +46,7 @@ export class ProductsService {
     this.calculateCartTotal();
     this.cartTotalEmitter.emit(this.cartTotal);
 
-    this.notifService.callNotif(product.name, true);
+    this.addToast(false, product.name, true);
   }
 
 
@@ -79,7 +85,7 @@ export class ProductsService {
     this.calculateCartTotal();
     this.cartTotalEmitter.emit(this.cartTotal);
 
-    this.notifService.callNotif(removedProductName, false);
+    this.addToast(false, removedProductName, false);
   }
 
   emptyCart() {
@@ -87,6 +93,32 @@ export class ProductsService {
     this.cartAdditionEmitter.emit(this.cartAddedProducts.slice());
     this.cartTotal = 0;
     this.cartTotalEmitter.emit(this.cartTotal);
+    this.router.navigate(['/products']);
+    this.addToast(true);
+  }
+
+
+
+
+
+
+  addToast(cartEmptied = false, prodName: string = '', alertType = false) {
+    const toastOptions: ToastOptions = {
+      title: '',
+      msg: !cartEmptied ? `${prodName}, ${alertType ? 'added to' : 'removed from'} cart` : 'Cart emptied',
+      showClose: true,
+      timeout: 5000,
+      theme: 'material',
+      // onAdd: (toast: ToastData) => {
+      //   console.log('Toast ' + toast.id + ' has been added!');
+      // },
+      // onRemove: function (toast: ToastData) {
+      //   console.log('Toast ' + toast.id + ' has been removed!');
+      // }
+    };
+    // Add see all possible types in one shot
+
+    alertType ? this.toastyService.success(toastOptions) : this.toastyService.error(toastOptions);
   }
 
 }

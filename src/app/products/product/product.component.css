@@ -1,0 +1,7 @@
+figure img {
+  max-width: 500px;
+  height: auto;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%)
+}

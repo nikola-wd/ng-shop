@@ -1,3 +1,16 @@
 .card-header.is-black {
   background-color: #000;
 }
+
+figure {
+  min-height: 270px;
+}
+
+
+figure img {
+  max-width:  290px;
+  max-height: 290px;
+  width:  auto;
+  height: auto;
+  margin: 0 auto;
+}

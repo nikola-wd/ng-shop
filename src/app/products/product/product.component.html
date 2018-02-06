@@ -11,13 +11,8 @@
       </header>
       <div class="card-image">
         <figure class="image is-4by3">
-          <img [src]="product.imagePathLg" [alt]="product.name">
+          <img [src]="product.imagePath" [alt]="product.name">
         </figure>
-      </div>
-      <div class="card-content">
-        <div class="content">
-          {{ product.description }}
-        </div>
       </div>
     </div>
   </div>
@@ -35,5 +30,13 @@
         <i class="fas fa-cart-plus"></i>
       </span>&nbsp; Add to Cart
     </a>
+
+    <hr>
+
+    <div class="card-content">
+      <div class="content">
+        {{ product.description }}
+      </div>
+    </div>
   </div>
 </div>

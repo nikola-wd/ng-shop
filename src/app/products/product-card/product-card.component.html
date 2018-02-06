@@ -13,8 +13,8 @@
     </figure>
   </div>
   <div class="card-content">
-    <div class="content">
-       {{ product.description }}
+    <div class="content has-text-centered">
+       {{ product.description | truncate:60 }}
     </div>
   </div>
   <footer class="card-footer">

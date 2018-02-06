@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastyModule } from 'ng2-toasty';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -14,8 +17,7 @@ import { ProductsService } from './services/products.service';
 import { CartComponent } from './cart/cart.component';
 import { NumberInputComponent } from './shared/number-input/number-input.component';
 import { ProductsDataBaseService } from './services/products-data-base.service';
-import { NotificationComponent } from './shared/notification/notification.component';
-import { NotificationService } from './services/notification.service';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 
 const appRoutes: Routes = [
@@ -39,13 +41,15 @@ const appRoutes: Routes = [
     ProductComponent,
     CartComponent,
     NumberInputComponent,
-    NotificationComponent
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
+    ToastyModule.forRoot()
   ],
-  providers: [ProductsDataBaseService, ProductsService, NotificationService],
+  providers: [ProductsDataBaseService, ProductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

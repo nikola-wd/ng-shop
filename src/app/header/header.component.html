@@ -4,14 +4,14 @@
         <a class="navbar-item logo" routerLink="/">
           ng<b>Shop</b>
         </a>
-        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+        <div class="navbar-burger burger" [ngClass]="{'is-active': menuToggle}" data-target="navbarExampleTransparentExample" (click)="menuToggle = !menuToggle">
           <span></span>
           <span></span>
           <span></span>
         </div>
       </div>
 
-      <div id="navbarExampleTransparentExample" class="navbar-menu">
+      <div id="navbarExampleTransparentExample" class="navbar-menu" [ngClass]="{'is-active': menuToggle}">
         <div class="navbar-start">
           <a
             class="navbar-item"
