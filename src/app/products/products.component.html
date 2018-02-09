@@ -1,8 +1,15 @@
-<div class="columns is-multiline">
-
-  <app-product-card
-    class="column is-half-tablet is-one-quarter"
-    *ngFor="let product of products" [product]="product"></app-product-card>
-
+<div class="columns products-wrapper">
+  <aside class="aside column is-one-quarter">
+    <app-filters></app-filters>
+  </aside>
+  <div class="column is-three-quarter">
+    <div class="columns is-multiline">
+      <app-product-card
+        class="column is-half-tablet is-one-third-fullhd"
+        *ngFor="let product of (products | filter:filterBy)" [product]="product"></app-product-card>
+    </div>
+    <!-- columns -->
+  </div>
 
 </div><!-- columns -->
+

@@ -51,6 +51,8 @@
 }
 
 .prodName {
+  max-width: calc(100% - 70px);
+  overflow: hidden;
   color: #222;
 }
 

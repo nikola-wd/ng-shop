@@ -1,37 +1,53 @@
-<form>
-  <div class="field">
-    <label class="label">Name</label>
-    <div class="control">
-      <input class="input" type="text" placeholder="Text input">
-    </div>
-  </div>
-
-  <div class="field">
-    <label class="label">Email</label>
-    <div class="control has-icons-left has-icons-right">
-      <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
-      <span class="icon is-small is-left">
-        <i class="fas fa-envelope"></i>
+<div class="card card--contact-form">
+  <header class="card-header">
+    <p class="card-header-title">
+      Get in Touch
+    </p>
+    <span class="card-header-icon has-text-grey-light">
+      <span class="icon">
+        <i class="fas fa-envelope-open" aria-hidden="true"></i>
       </span>
-      <span class="icon is-small is-right">
-        <i class="fas fa-exclamation-triangle"></i>
-      </span>
+    </span>
+  </header>
+  <div class="card-content">
+    <div class="content has-text-centered">
+      <form>
+        <div class="field">
+          <label class="label">Name</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Text input">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control has-icons-left has-icons-right">
+            <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+            <span class="icon is-small is-right">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+          </div>
+          <p class="help is-danger">This email is invalid</p>
+        </div>
+
+
+        <div class="field">
+          <label class="label">Message</label>
+          <div class="control">
+            <textarea class="textarea" placeholder="Textarea"></textarea>
+          </div>
+        </div>
+
+
+        <div class="field">
+          <div class="control">
+            <button class="button is-link is-outlined is-fullwidth">Submit</button>
+          </div>
+        </div>
+      </form>
     </div>
-    <p class="help is-danger">This email is invalid</p>
   </div>
-
-
-  <div class="field">
-    <label class="label">Message</label>
-    <div class="control">
-      <textarea class="textarea" placeholder="Textarea"></textarea>
-    </div>
-  </div>
-
-
-  <div class="field">
-    <div class="control">
-      <button class="button is-link">Submit</button>
-    </div>
-  </div>
-</form>
+</div>

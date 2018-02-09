@@ -2,7 +2,23 @@
   font-size: 24px;
 }
 
+.navbar {
+  box-shadow: 1px 1px 3px rgba(0,0,0, .27);
+}
+
+
 .logo b {
   font-weight: 600;
   color: #ffdd57;
+}
+
+
+a.navbar-item:hover,
+a.navbar-item.is-active,
+a.navbar-link:hover,
+a.navbar-link.is-active,
+a.navbar-item.is-active:not(:hover),
+a.navbar-link.is-active:not(:hover) {
+  background-color: whitesmoke;
+  color: #333;
 }

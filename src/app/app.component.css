@@ -1,3 +1,7 @@
 .main {
   padding-top: 15px;
+  background-color: whitesmoke;
+  min-height: calc(100vh - 52px);
+  overflow: hidden;
+  padding-bottom: 15px;
 }

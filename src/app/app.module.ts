@@ -18,6 +18,8 @@ import { CartComponent } from './cart/cart.component';
 import { NumberInputComponent } from './shared/number-input/number-input.component';
 import { ProductsDataBaseService } from './services/products-data-base.service';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { FiltersComponent } from './products/filters/filters.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 const appRoutes: Routes = [
@@ -41,7 +43,9 @@ const appRoutes: Routes = [
     ProductComponent,
     CartComponent,
     NumberInputComponent,
-    TruncatePipe
+    TruncatePipe,
+    FiltersComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

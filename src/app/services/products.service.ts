@@ -10,11 +10,13 @@ import { ProductsDataBaseService } from './products-data-base.service';
 export class ProductsService {
   cartAdditionEmitter = new EventEmitter<Product[]>(); // emitted for card and single product, minicart listens to it
   cartTotalEmitter = new EventEmitter<number>(); // emitted for price total calculation on, addition, substraction, increase or removal
+  filterTypeEmitter = new EventEmitter<string>(); // emittet when filtering through product categories
 
   private allProducts: Product[] = this.prodDB.getDBProducts();
   private cartAddedProducts: Product[] = [];
   private cartTotal = 0;
   private selectedProduct: Product;
+  private filterBy = 'all';
 
 
   constructor(
@@ -22,6 +24,18 @@ export class ProductsService {
     private router: Router,
     private toastyService: ToastyService
   ) { }
+
+
+
+  setFilter(filterValue: string) {
+    this.filterBy = filterValue;
+    this.filterTypeEmitter.emit(this.filterBy);
+  }
+  getFilter() {
+    return this.filterBy;
+  }
+
+
 
 
   getAllProducts() {

@@ -1,0 +1,44 @@
+<div class="card card--filters">
+  <header class="card-header">
+    <p class="card-header-title">
+      Filters
+    </p>
+    <span class="card-header-icon has-text-grey-light">
+      <span class="icon">
+        <i class="fas fa-filter" aria-hidden="true"></i>
+      </span>
+    </span>
+  </header>
+  <div class="card-content">
+    <div class="content has-text-centered">
+      <nav class="panel">
+        <div class="panel-block">
+          <p class="control has-icons-left">
+            <input class="input is-small" type="text" placeholder="search">
+            <span class="icon is-small is-left">
+              <i class="fas fa-search"></i>
+            </span>
+          </p>
+        </div>
+        <a class="panel-block" [ngClass]="{'is-active': filterBy==='all'}" (click)="setFilter('all')">
+          All
+        </a>
+        <a class="panel-block" [class.is-active]="filterBy==='tshirts'" (click)="setFilter('tshirts')">
+          T-shirts
+        </a>
+        <a class="panel-block" [class.is-active]="filterBy==='shoes'" (click)="setFilter('shoes')">
+          Shoes
+        </a>
+        <div class="panel-block">
+          <button class="button is-outlined is-fullwidth" (click)="setFilter('all')">
+            reset all filters
+          </button>
+        </div>
+
+        <div class="panel-block">
+          To add: price filter (maybe a slider), asc / dsc
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>

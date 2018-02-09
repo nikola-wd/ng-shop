@@ -1,16 +1,19 @@
-.card-header.is-black {
-  background-color: #000;
+.card-header.is-white {
+  color: #333;
 }
 
 figure {
   min-height: 270px;
 }
 
+.card-image {
+  padding-top: 13px;
+}
 
 figure img {
   max-width:  290px;
   max-height: 290px;
-  width:  auto;
+  width:  100%;
   height: auto;
   margin: 0 auto;
 }

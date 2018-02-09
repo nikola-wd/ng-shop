@@ -1,0 +1,24 @@
+a.panel-block.is-active {
+  background-color: whitesmoke;
+}
+
+
+@media (min-width: 769px) {
+  .card--filters { position: fixed; }
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+  .card--filters { width: 174.25px; }
+}
+
+@media (min-width: 1024px) and (max-width: 1215px) {
+  .card--filters { width: 222px; }
+}
+
+@media (min-width: 1216px) and (max-width: 1407px) {
+  .card--filters { width: 270px; }
+}
+
+@media (min-width: 1408px) {
+  .card--filters { width: 318px; }
+}

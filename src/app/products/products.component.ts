@@ -10,11 +10,19 @@ import { ProductsService } from '../services/products.service';
 })
 export class ProductsComponent implements OnInit {
   products: Product[];
+  filterBy: string;
 
   constructor(private prodService: ProductsService) { }
 
   ngOnInit() {
     this.products = this.prodService.getAllProducts();
+    this.filterBy = this.prodService.getFilter();
+
+    this.prodService.filterTypeEmitter.subscribe(
+      (filterValue: string) => {
+        this.filterBy = filterValue;
+      }
+    );
   }
 
 }
