@@ -5,6 +5,10 @@ body {
 }
 
 
+.dn {
+  display: none;
+}
+
 
 .navbar.is-black .navbar-start>a.navbar-item:hover,
 .navbar.is-black .navbar-start>a.navbar-item.is-active,

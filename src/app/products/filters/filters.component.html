@@ -3,13 +3,13 @@
     <p class="card-header-title">
       Filters
     </p>
-    <span class="card-header-icon has-text-grey-light">
-      <span class="icon">
-        <i class="fas fa-filter" aria-hidden="true"></i>
+    <a class="card-header-icon has-text-grey-light" (click)="filterToggle = !filterToggle">
+      <span class="icon ">
+        <i class="fas fa-filter " aria-hidden="true "></i>
       </span>
-    </span>
+    </a>
   </header>
-  <div class="card-content">
+  <div class="card-content" [ngClass]="{'dn': !filterToggle}">
     <div class="content has-text-centered">
       <nav class="panel">
         <div class="panel-block">
