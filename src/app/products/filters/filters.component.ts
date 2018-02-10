@@ -35,4 +35,10 @@ export class FiltersComponent implements OnInit {
     this.prodService.searchFilter(this.searchText.nativeElement.value);
   }
 
+  resetFilters() {
+    this.prodService.setFilter('all');
+    this.searchText.nativeElement.value = '';
+    this.prodService.searchFilter('');
+  }
+
 }
