@@ -14,7 +14,7 @@
       <nav class="panel">
         <div class="panel-block">
           <p class="control has-icons-left">
-            <input class="input is-small" type="text" placeholder="search">
+            <input class="input is-small" type="text" placeholder="search" (keyup)="searchFilter()" #searchInput />
             <span class="icon is-small is-left">
               <i class="fas fa-search"></i>
             </span>

@@ -11,12 +11,14 @@ export class ProductsService {
   cartAdditionEmitter = new EventEmitter<Product[]>(); // emitted for card and single product, minicart listens to it
   cartTotalEmitter = new EventEmitter<number>(); // emitted for price total calculation on, addition, substraction, increase or removal
   filterTypeEmitter = new EventEmitter<string>(); // emittet when filtering through product categories
+  searchEmitter = new EventEmitter<string>();
 
   private allProducts: Product[] = this.prodDB.getDBProducts();
   private cartAddedProducts: Product[] = [];
   private cartTotal = 0;
   private selectedProduct: Product;
   private filterBy = 'all';
+  private search = '';
 
 
   constructor(
@@ -33,6 +35,14 @@ export class ProductsService {
   }
   getFilter() {
     return this.filterBy;
+  }
+
+  searchFilter(searchValue: string) {
+    this.search = searchValue;
+    this.searchEmitter.emit(this.search);
+  }
+  getSearchFilter() {
+    return this.search;
   }
 
 
@@ -56,7 +66,7 @@ export class ProductsService {
     const added = this.cartAddedProducts.find(p => p === product);
     added ? added.qty++ : this.cartAddedProducts.push(product);
 
-    this.cartAdditionEmitter.emit(this.cartAddedProducts.slice());
+    this.cartAdditionEmitter.emit(this.cartAddedProducts);
     this.calculateCartTotal();
     this.cartTotalEmitter.emit(this.cartTotal);
 
@@ -68,7 +78,7 @@ export class ProductsService {
 
 
   getCartAddedProducts() {
-    return this.cartAddedProducts.slice();
+    return this.cartAddedProducts;
   }
 
   calculateCartTotal() {
@@ -84,7 +94,7 @@ export class ProductsService {
 
 
   cartProductManipulate(product: Product, increase: boolean = false) {
-    const manipulatedProduct = this.cartAddedProducts.slice().find(mp => mp === product);
+    const manipulatedProduct = this.cartAddedProducts.find(mp => mp === product);
     increase ? manipulatedProduct.qty++ : manipulatedProduct.qty--;
     this.calculateCartTotal();
     this.cartTotalEmitter.emit(this.cartTotal);
@@ -95,7 +105,7 @@ export class ProductsService {
   removeCartSingleItem(itemIndex: number) {
     const removedProductName = this.cartAddedProducts[itemIndex].name;
     this.cartAddedProducts.splice(itemIndex, 1);
-    this.cartAdditionEmitter.emit(this.cartAddedProducts.slice());
+    this.cartAdditionEmitter.emit(this.cartAddedProducts);
     this.calculateCartTotal();
     this.cartTotalEmitter.emit(this.cartTotal);
     this.addToast(false, removedProductName, false);
@@ -103,7 +113,7 @@ export class ProductsService {
 
   emptyCart() {
     this.cartAddedProducts = [];
-    this.cartAdditionEmitter.emit(this.cartAddedProducts.slice());
+    this.cartAdditionEmitter.emit(this.cartAddedProducts);
     this.cartTotal = 0;
     this.cartTotalEmitter.emit(this.cartTotal);
     this.router.navigate(['/products']);

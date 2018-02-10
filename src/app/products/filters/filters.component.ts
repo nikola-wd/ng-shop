@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { ProductsService } from '../../services/products.service';
 export class FiltersComponent implements OnInit {
   filterBy: string;
   filterToggle: boolean;
+  @ViewChild('searchInput') searchText: ElementRef;
 
   constructor(private prodService: ProductsService) { }
 
@@ -26,10 +27,12 @@ export class FiltersComponent implements OnInit {
   setFilterToggle() {
     this.filterToggle = window.outerWidth > 768 ? true : false;
   }
-
-
   setFilter(filterValue: string) {
     this.prodService.setFilter(filterValue);
+  }
+
+  searchFilter() {
+    this.prodService.searchFilter(this.searchText.nativeElement.value);
   }
 
 }

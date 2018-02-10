@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastyModule } from 'ng2-toasty';
@@ -20,6 +21,7 @@ import { ProductsDataBaseService } from './services/products-data-base.service';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { FiltersComponent } from './products/filters/filters.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { SearchPipe } from './pipes/search.pipe';
 
 
 const appRoutes: Routes = [
@@ -45,13 +47,15 @@ const appRoutes: Routes = [
     NumberInputComponent,
     TruncatePipe,
     FiltersComponent,
-    FilterPipe
+    FilterPipe,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    ToastyModule.forRoot()
+    ToastyModule.forRoot(),
+    FormsModule
   ],
   providers: [ProductsDataBaseService, ProductsService],
   bootstrap: [AppComponent]
