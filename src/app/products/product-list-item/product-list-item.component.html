@@ -14,14 +14,14 @@
     </div>
   </td>
   <td class="card--list__ctas">
-    <div>
-      <a class="has-text-info" [routerLink]="['/products', product.id]">
-        <span class="icon">
+    <div class="buttons has-addons">
+      <a class="button" [routerLink]="['/products', product.id]">
+        <span class="icon is-small">
           <i class="fas fa-search-plus"></i>
         </span>
       </a>
-      <a class="has-text-success" style="cursor: pointer;" (click)="onAddToCart(product)">
-        <span class="icon">
+      <a class="button" (click)="onAddToCart(product)">
+        <span class="icon is-small">
           <i class="fas fa-cart-plus"></i>
         </span>
       </a>
