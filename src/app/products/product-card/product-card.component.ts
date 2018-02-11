@@ -11,6 +11,7 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ProductCardComponent implements OnInit {
   @Input() product: Product;
+  @Input() layoutMode: boolean;
 
   constructor(private prodService: ProductsService) { }
 

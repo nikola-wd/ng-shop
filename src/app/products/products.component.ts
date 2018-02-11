@@ -12,6 +12,7 @@ export class ProductsComponent implements OnInit {
   products: Product[];
   filterBy: string;
   searchText: string;
+  layoutMode: boolean; // true for grid, false for list
 
   constructor(private prodService: ProductsService) { }
 
@@ -19,6 +20,7 @@ export class ProductsComponent implements OnInit {
     this.products = this.prodService.getAllProducts();
     this.filterBy = this.prodService.getFilter();
     this.searchText = this.prodService.getSearchFilter();
+    this.layoutMode = this.prodService.getLayout();
 
     this.prodService.filterTypeEmitter.subscribe(
       (filterValue: string) => {
@@ -28,6 +30,11 @@ export class ProductsComponent implements OnInit {
     this.prodService.searchEmitter.subscribe(
       (searchValue: string) => {
         this.searchText = searchValue;
+      }
+    );
+    this.prodService.layoutModeEmitter.subscribe(
+      (layoutVal: boolean) => {
+        this.layoutMode = layoutVal;
       }
     );
   }

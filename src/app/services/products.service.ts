@@ -12,6 +12,7 @@ export class ProductsService {
   cartTotalEmitter = new EventEmitter<number>(); // emitted for price total calculation on, addition, substraction, increase or removal
   filterTypeEmitter = new EventEmitter<string>(); // emittet when filtering through product categories
   searchEmitter = new EventEmitter<string>();
+  layoutModeEmitter = new EventEmitter<boolean>();
 
   private allProducts: Product[] = this.prodDB.getDBProducts();
   private cartAddedProducts: Product[] = [];
@@ -19,6 +20,8 @@ export class ProductsService {
   private selectedProduct: Product;
   private filterBy = 'all';
   private search = '';
+  private layoutMode = (
+    !window.localStorage.getItem('ngShopLayout') || window.localStorage.getItem('ngShopLayout')) === 'grid' ? true : false;
 
 
   constructor(
@@ -118,6 +121,17 @@ export class ProductsService {
     this.cartTotalEmitter.emit(this.cartTotal);
     this.router.navigate(['/products']);
     this.addToast(true);
+  }
+
+
+
+  getLayout() {
+    return this.layoutMode;
+  }
+  setLayout(layoutValue: boolean) {
+    window.localStorage.setItem('ngShopLayout', layoutValue ? 'grid' : 'list');
+    this.layoutMode = layoutValue;
+    this.layoutModeEmitter.emit(this.layoutMode);
   }
 
 

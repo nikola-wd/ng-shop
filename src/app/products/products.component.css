@@ -1,3 +1,9 @@
 .products-wrapper {
   align-items: flex-start;
 }
+
+
+
+.table.is-striped tbody .tr:not(.is-selected):nth-child(even) {
+  background-color: #fafafa;
+}

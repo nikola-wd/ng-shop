@@ -17,3 +17,22 @@ figure img {
   height: auto;
   margin: 0 auto;
 }
+
+
+
+/* list layout */
+.card--list__img {
+  width: 150px;
+}
+.card--list__ctas {
+  width: 130px;
+}
+.card--list__ctas div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card--list__price,
+.card--list__ctas {
+  padding-top: 35px;
+}

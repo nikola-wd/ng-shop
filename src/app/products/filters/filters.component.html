@@ -3,9 +3,34 @@
     <p class="card-header-title">
       Filters
     </p>
-    <a class="card-header-icon has-text-grey-light" (click)="filterToggle = !filterToggle">
-      <span class="icon ">
-        <i class="fas fa-filter " aria-hidden="true "></i>
+
+    <span class="card--filters__layout-option">
+      <a
+        class="card-header-icon"
+        [ngClass]="{'has-text-dark': layoutMode, 'has-text-grey-light': !layoutMode}" (click)="setLayout(true)">
+        <span class="icon">
+          <i class="fas fa-th" aria-hidden="true "></i>
+        </span>
+      </a>
+    </span>
+
+    <span class="card--filters__layout-option">
+      <a
+        class="card-header-icon"
+        [ngClass]="{'has-text-dark': !layoutMode, 'has-text-grey-light': layoutMode}" (click)="setLayout(false)">
+        <span class="icon">
+          <i class="fas fa-list" aria-hidden="true "></i>
+        </span>
+      </a>
+    </span>
+
+    <a
+      class="card-header-icon"
+      [ngClass]="{'has-text-dark': filterToggle, 'has-text-grey-light': !filterToggle}"
+      (click)="filterToggle = !filterToggle"
+    >
+      <span class="icon">
+        <i class="fas fa-filter" aria-hidden="true "></i>
       </span>
     </a>
   </header>
@@ -36,7 +61,7 @@
         </div>
 
         <div class="panel-block">
-          To add: price filter (maybe a slider), asc / dsc
+          To add: price filter (maybe a slider), asc / dsc, sorting... Toasty & filters in their own services
         </div>
       </nav>
     </div>

@@ -23,9 +23,7 @@ h1 {
   color: #222;
 }
 
-thead {
-  background-color: whitesmoke;
-}
+
 
 tr td {
   position: relative;
@@ -42,9 +40,13 @@ tr td div {
   align-items: center;
 }
 
+.panel-heading,
+.panel-block {
+  background-color: #fff;
+}
+
 
 .panel-footer {
-  background-color: whitesmoke;
   border-radius: 0 0 4px 4px;
 }
 
