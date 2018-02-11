@@ -20,8 +20,7 @@ export class ProductsService {
   private selectedProduct: Product;
   private filterBy = 'all';
   private search = '';
-  private layoutMode = (
-    !window.localStorage.getItem('ngShopLayout') || window.localStorage.getItem('ngShopLayout')) === 'grid' ? true : false;
+  private layoutMode = window.localStorage.getItem('ngShopLayout') === 'list' ? false : true;
 
 
   constructor(
