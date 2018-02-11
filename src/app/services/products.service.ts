@@ -60,6 +60,14 @@ export class ProductsService {
     return this.selectedProduct;
   }
 
+  // get max 3 similar products sorted from high price > low
+  getSimilarProducts(prodType: string, prodId: number) {
+    const SIMILAR_PRODUCTS = this.getAllProducts().sort((a, b) => b.price - a.price);
+    return SIMILAR_PRODUCTS.filter((p) => {
+      return p.id !== +prodId && p.type === prodType;
+    }).slice(0, 3); // get max 3 items
+  }
+
 
 
 

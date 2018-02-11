@@ -12,13 +12,15 @@ import { ProductsService } from '../../services/products.service';
 export class ProductComponent implements OnInit {
   product: Product;
   // id: number;
+  similarProducts: Product[];
 
   constructor(private route: ActivatedRoute, private prodService: ProductsService) { }
 
   ngOnInit() {
     // this.id = this.route.snapshot.params['id'];
 
-    // ovo nije potrebno osim u slucaju da se params menja programaticki iz ove komponente, dovoljan se samo kod iznad ako to nije slucaj
+    // this code should be used only in the case of route params should change programatically from
+    // within this component, if not, code above is enough
     // this.route.params.subscribe(
     //   (params: Params) => {
     //     this.id = params['id'];
@@ -26,12 +28,17 @@ export class ProductComponent implements OnInit {
     // );
 
     this.product = this.prodService.getSingleProduct(this.route.snapshot.params['id']);
+    this.getSimilarProducts(this.product.type, this.product.id);
   }
-
 
 
   addToCart(product: Product) {
     this.prodService.addToCart(product);
+  }
+
+
+  getSimilarProducts(prodType: string, prodId: number) {
+    this.similarProducts = this.prodService.getSimilarProducts(prodType, prodId);
   }
 
 }

@@ -1,5 +1,5 @@
 <!-- grid layout -->
-<div *ngIf="layoutMode; else prodListItem" class="card">
+<div class="card">
   <header class="card-header">
     <p class="card-header-title">
       {{ product.name }}
@@ -33,37 +33,3 @@
     </a>
   </footer>
 </div>
-
-
-<!-- list layout -->
-<ng-template #prodListItem>
-  <td class="card--list__img">
-    <img [src]="product.imagePath" [alt]="product.name" />
-  </td>
-  <td class="card--list__name">
-    <h2><strong>{{ product.name }}</strong></h2>
-    <p>{{ product.description | truncate:200 }}</p>
-  </td>
-  <td class="card--list__price">
-    <div>
-      {{ product.price | currency }}
-    </div>
-  </td>
-  <td class="card--list__ctas">
-    <div>
-      <a class="has-text-info" [routerLink]="['/products', product.id]">
-        <span class="icon">
-          <i class="fas fa-search-plus"></i>
-        </span>
-      </a>
-      <a class="has-text-success" style="cursor: pointer;" (click)="onAddToCart(product)">
-        <span class="icon">
-          <i class="fas fa-cart-plus"></i>
-        </span>
-      </a>
-    </div>
-  </td>
-</ng-template>
-
-
-

@@ -22,6 +22,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { FiltersComponent } from './products/filters/filters.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SearchPipe } from './pipes/search.pipe';
+import { ProductListItemComponent } from './products/product-list-item/product-list-item.component';
 
 
 const appRoutes: Routes = [
@@ -48,7 +49,8 @@ const appRoutes: Routes = [
     TruncatePipe,
     FiltersComponent,
     FilterPipe,
-    SearchPipe
+    SearchPipe,
+    ProductListItemComponent
   ],
   imports: [
     BrowserModule,

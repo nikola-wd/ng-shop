@@ -3,6 +3,9 @@
 }
 
 
+.tr {
+  display: table-row;
+}
 
 .table.is-striped tbody .tr:not(.is-selected):nth-child(even) {
   background-color: #fafafa;
