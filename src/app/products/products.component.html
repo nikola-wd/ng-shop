@@ -3,33 +3,35 @@
     <app-filters></app-filters>
   </aside>
   <div class="column is-three-quarter">
-    <!-- grid layout -->
-    <div class="columns is-multiline" *ngIf="layoutMode">
-      <app-product-card
-        class="column is-half-tablet is-one-third-fullhd"
-        *ngFor="let product of (products | filter:filterBy) | search: searchText"
-        [product]="product"></app-product-card>
+
+
+    <div *ngIf="((products | filter:filterBy) | search: searchText).length > 0">
+      <!-- grid layout -->
+      <div class="columns is-multiline" *ngIf="layoutMode">
+        <app-product-card class="column is-half-tablet is-one-third-fullhd" *ngFor="let product of (products | filter:filterBy) | search: searchText"
+          [product]="product"></app-product-card>
+      </div>
+      <!-- columns -->
+
+      <!-- list layout -->
+      <table *ngIf="!layoutMode" class="table is-fullwidth is-striped">
+        <thead>
+          <tr>
+            <th colspan="1"></th>
+            <th colspan="1">Name / Desc.</th>
+            <th colspan="1">Price</th>
+            <th colspan="1">View / To Cart</th>
+          </tr>
+        </thead>
+        <tbody>
+          <app-product-list-item class="tr" *ngFor="let product of (products | filter:filterBy) | search: searchText" [product]="product"></app-product-list-item>
+        </tbody>
+      </table>
     </div>
-    <!-- columns -->
 
 
-    <!-- list layout -->
-    <table *ngIf="!layoutMode" class="table is-fullwidth is-striped">
-      <thead>
-        <tr>
-          <th colspan="1"></th>
-          <th colspan="1">Name / Desc.</th>
-          <th colspan="1">Price</th>
-          <th colspan="1">View / To Cart</th>
-        </tr>
-      </thead>
-      <tbody>
-        <app-product-list-item 
-          class="tr" 
-          *ngFor="let product of (products | filter:filterBy) | search: searchText"
-          [product]="product"></app-product-list-item>
-      </tbody>
-    </table>
-  </div>
+    <h2 *ngIf="((products | filter:filterBy) | search: searchText).length <= 0">No results for your search, try resetting your filters</h2>
 
+
+  </div><!-- column -->
 </div><!-- columns -->
