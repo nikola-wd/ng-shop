@@ -1,5 +1,5 @@
 <!-- grid layout -->
-<div *ngIf="layoutMode" class="card">
+<div *ngIf="layoutMode; else prodListItem" class="card">
   <header class="card-header">
     <p class="card-header-title">
       {{ product.name }}
@@ -36,7 +36,7 @@
 
 
 <!-- list layout -->
-<ng-container *ngIf="!layoutMode">
+<ng-template #prodListItem>
   <td class="card--list__img">
     <img [src]="product.imagePath" [alt]="product.name" />
   </td>
@@ -63,7 +63,7 @@
       </a>
     </div>
   </td>
-</ng-container>
+</ng-template>
 
 
 

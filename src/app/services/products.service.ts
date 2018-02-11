@@ -142,19 +142,11 @@ export class ProductsService {
   addToast(cartEmptied = false, prodName: string = '', alertType = false) {
     const toastOptions: ToastOptions = {
       title: '',
-      msg: !cartEmptied ? `${prodName}, ${alertType ? 'added to' : 'removed from'} cart` : 'Cart emptied',
+      msg: cartEmptied ? 'Cart emptied' : `${prodName}, ${alertType ? 'added to' : 'removed from'} cart`,
       showClose: true,
       timeout: 5000,
       theme: 'material',
-      // onAdd: (toast: ToastData) => {
-      //   console.log('Toast ' + toast.id + ' has been added!');
-      // },
-      // onRemove: function (toast: ToastData) {
-      //   console.log('Toast ' + toast.id + ' has been removed!');
-      // }
     };
-    // Add see all possible types in one shot
-
     alertType ? this.toastyService.success(toastOptions) : this.toastyService.error(toastOptions);
   }
 
