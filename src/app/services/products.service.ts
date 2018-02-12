@@ -75,17 +75,11 @@ export class ProductsService {
     // if item is already in cart ++ its qty, don't readd it
     const added = this.cartAddedProducts.find(p => p === product);
     added ? added.qty++ : this.cartAddedProducts.push(product);
-
     this.cartAdditionEmitter.emit(this.cartAddedProducts);
     this.calculateCartTotal();
     this.cartTotalEmitter.emit(this.cartTotal);
-
     this.addToast(false, product.name, true);
   }
-
-
-
-
 
   getCartAddedProducts() {
     return this.cartAddedProducts;
@@ -102,7 +96,6 @@ export class ProductsService {
     return this.cartTotal;
   }
 
-
   cartProductManipulate(product: Product, increase: boolean = false) {
     const manipulatedProduct = this.cartAddedProducts.find(mp => mp === product);
     increase ? manipulatedProduct.qty++ : manipulatedProduct.qty--;
@@ -113,6 +106,9 @@ export class ProductsService {
 
 
   removeCartSingleItem(itemIndex: number) {
+    // fixes a bug where multiple items are added to a cart if we cleared a cart when item had qty > 1
+    this.cartAddedProducts[itemIndex].qty = 1;
+
     const removedProductName = this.cartAddedProducts[itemIndex].name;
     this.cartAddedProducts.splice(itemIndex, 1);
     this.cartAdditionEmitter.emit(this.cartAddedProducts);
@@ -122,6 +118,9 @@ export class ProductsService {
   }
 
   emptyCart() {
+    // fixes a bug where multiple items are added to a cart if we cleared a cart when item had qty > 1
+    for (const cp of this.cartAddedProducts) { cp.qty = 1; }
+
     this.cartAddedProducts = [];
     this.cartAdditionEmitter.emit(this.cartAddedProducts);
     this.cartTotal = 0;

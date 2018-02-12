@@ -22,3 +22,12 @@ a.navbar-link.is-active:not(:hover) {
   background-color: whitesmoke;
   color: #333;
 }
+
+
+.github {
+  background-color: #333 !important;
+  color: whitesmoke !important;
+}
+.github:hover {
+  opacity: 0.9;
+}
