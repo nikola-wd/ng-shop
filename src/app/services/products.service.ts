@@ -1,10 +1,10 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { Http, Response } from '@angular/http';
 import { ToastyService, ToastyConfig, ToastyComponent, ToastOptions, ToastData } from 'ng2-toasty';
 
 
 import { Product } from '../products/product.model';
-import { ProductsDataBaseService } from './products-data-base.service';
 
 @Injectable()
 export class ProductsService {
@@ -14,7 +14,7 @@ export class ProductsService {
   searchEmitter = new EventEmitter<string>();
   layoutModeEmitter = new EventEmitter<boolean>();
 
-  private allProducts: Product[] = this.prodDB.getDBProducts();
+  private allProducts: Product[];
   private cartAddedProducts: Product[] = [];
   private cartTotal = 0;
   private selectedProduct: Product;
@@ -24,12 +24,14 @@ export class ProductsService {
 
 
   constructor(
-    private prodDB: ProductsDataBaseService,
     private router: Router,
-    private toastyService: ToastyService
-  ) { }
+    private toastyService: ToastyService,
+    private http: Http
+  ) {}
 
-
+  fetchProductsFromDB() {
+    return this.http.get('<firebase-url>/products.json');
+  }
 
   setFilter(filterValue: string) {
     this.filterBy = filterValue;
@@ -48,7 +50,10 @@ export class ProductsService {
   }
 
 
-
+  setAllProducts(fetchedProducts: Product[]) {
+    this.allProducts = fetchedProducts;
+    console.log('asdasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+  }
 
   getAllProducts() {
     return this.allProducts.slice();

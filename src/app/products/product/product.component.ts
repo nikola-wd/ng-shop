@@ -17,14 +17,6 @@ export class ProductComponent implements OnInit, DoCheck {
   constructor(private route: ActivatedRoute, private prodService: ProductsService) { }
 
   ngOnInit() {
-    // this.id = this.route.snapshot.params['id'];
-    // this code should be used only in the case of route params should change programatically from
-    // within this component, if not, code above is enough (this is not the case now, since we change from similar products via routerLink)
-    // this.route.params.subscribe(
-      //   (params: Params) => {
-        //     this.id = params['id'];
-        //   }
-        // );
     this.initProductSingleView();
   }
 

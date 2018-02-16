@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpModule } from '@angular/http';
 
 import { ToastyModule } from 'ng2-toasty';
 
@@ -17,7 +18,6 @@ import { ProductComponent } from './products/product/product.component';
 import { ProductsService } from './services/products.service';
 import { CartComponent } from './cart/cart.component';
 import { NumberInputComponent } from './shared/number-input/number-input.component';
-import { ProductsDataBaseService } from './services/products-data-base.service';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { FiltersComponent } from './products/filters/filters.component';
 import { FilterPipe } from './pipes/filter.pipe';
@@ -57,9 +57,12 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     ToastyModule.forRoot(),
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
-  providers: [ProductsDataBaseService, ProductsService],
+  providers: [
+    ProductsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
