@@ -1,17 +1,22 @@
+<div *ngIf="isLoading" class="loaderOverlay">
+  <div class="loader">Loading...</div>
+</div>
+
+
 <div class="columns">
   <div class="column is-two-thirds">
     <div class="card">
       <header class="card-header">
         <p class="card-header-title">
-          {{ product.name }}
+          {{ product ? product.name : 'loading' }}
         </p>
         <span class="card-header-icon">
-          <small>{{ product.price | currency }}</small>
+          <small>{{ product ? (product.price | currency) : 'loading' }}</small>
         </span>
       </header>
       <div class="card-image">
         <figure class="image is-4by3">
-          <img [src]="product.imagePath" [alt]="product.name">
+          <img [src]="product ? product.imagePath : 'http://via.placeholder.com/500x500'" [alt]="product.name" />
         </figure>
       </div>
     </div>
@@ -38,7 +43,7 @@
 
         <h2>To add: product image slider and zoom</h2>
 
-        {{ product.description }}
+        {{ product ? product.description : 'loading' }}
       </div>
     </div>
   </div>
@@ -46,10 +51,10 @@
 
 <hr>
 
-<h3 class="similar-items-title">You may also be interested in these</h3>
-<div class="columns is-multiline">
+<!-- <h3 class="similar-items-title">You may also be interested in these</h3> -->
+<!-- <div class="columns is-multiline">
   <app-product-card
     class="column is-one-third-desktop"
     *ngFor="let product of similarProducts"
     [product]="product"></app-product-card>
-</div>
+</div> -->

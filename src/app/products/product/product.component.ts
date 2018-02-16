@@ -1,5 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Response } from '@angular/http';
 
 import { Product } from '../product.model';
 import { ProductsService } from '../../services/products.service';
@@ -13,6 +14,7 @@ export class ProductComponent implements OnInit, DoCheck {
   id: number;
   product: Product;
   similarProducts: Product[];
+  isLoading = true;
 
   constructor(private route: ActivatedRoute, private prodService: ProductsService) { }
 
@@ -28,8 +30,13 @@ export class ProductComponent implements OnInit, DoCheck {
   // helper fn to save repeating same code in init and doCheck hooks
   initProductSingleView() {
     this.id = this.route.snapshot.params['id'];
-    this.product = this.prodService.getSingleProduct(this.id);
-    this.getSimilarProducts(this.product.type, this.product.id);
+    this.prodService.fetchSingleProductFromDB(+this.id - 1).subscribe(
+      (response: Response) => {
+        this.product = response.json();
+        this.isLoading = false;
+        // this.getSimilarProducts(this.product.type, this.product.id);
+      }
+    );
   }
 
 

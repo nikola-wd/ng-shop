@@ -30,8 +30,16 @@ export class ProductsService {
   ) {}
 
   fetchProductsFromDB() {
-    return this.http.get('<firebase-url>/products.json');
+    return this.http.get('- firebase-url -products.json');
   }
+
+  fetchSingleProductFromDB(indexID: number) {
+    return this.http.get(`- firebase-url -products/${indexID}.json`);
+  }
+
+
+
+
 
   setFilter(filterValue: string) {
     this.filterBy = filterValue;
@@ -57,11 +65,6 @@ export class ProductsService {
 
   getAllProducts() {
     return this.allProducts.slice();
-  }
-
-  getSingleProduct(id: number): Product {
-    this.selectedProduct = this.allProducts.find(p => p.id === +id);
-    return this.selectedProduct;
   }
 
   // get max 3 similar products sorted from high price > low
