@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response } from '@angular/http';
+// import { Http, Response } from '@angular/http';
 
 @Component({
   selector: 'app-home',
@@ -8,37 +8,11 @@ import { Http, Response } from '@angular/http';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private http: Http) {}
-  // constructor() {}
+  // constructor(private http: Http) {}
+  constructor() {}
 
   ngOnInit() {
   }
 
 
-  // addItem() {
-  //   const newItem = {
-  //     "description": "Brown Leather Boots Lorem ipsum dolor sit amet consectetur adipisicing elit.Enim itaque molestiae, obcaecati veniam nobis sunt. Deserunt incidunt est adipisci ea doloremque sunt non animi? Consequatur sed enim aperiam reiciendis nihil! Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim itaque molestiae, obcaecati veniam nobis sunt. Deserunt incidunt est adipisci ea doloremque sunt non animi? Consequatur sed enim aperiam reiciendis nihil! Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim itaque molestiae, obcaecati veniam nobis sunt. Deserunt incidunt est adipisci ea doloremque sunt non animi? Consequatur sed enim aperiam reiciendis nihil! Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim itaque molestiae, obcaecati veniam nobis sunt. Deserunt incidunt est adipisci ea doloremque sunt non animi? Consequatur sed enim aperiam reiciendis nihil!",
-  //     "id": 6,
-  //     "imagePath": "assets/images/shoes2.jpg",
-  //     "imagePathSm": "assets/images/shoes2--sm.jpg",
-  //     "name": "Brown Leather Boots",
-  //     "price": 79,
-  //     "qty": 1,
-  //     "type": "shoes"
-  //   };
-
-  //   this.http.post('', newItem).subscribe(
-  //     (response: Response) => {
-  //       console.log(response);
-  //     }
-  //   );
-  // }
-
-  getSingleItem() {
-    this.http.get(`/products/-L5ddrZPCH2mRE-G8tG2.json`).subscribe(
-      (response: Response) => {
-        console.log(response.json());
-      }
-    );
-  }
 }
