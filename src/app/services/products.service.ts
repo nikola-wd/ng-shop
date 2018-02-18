@@ -30,11 +30,11 @@ export class ProductsService {
   ) {}
 
   fetchProductsFromDB() {
-    return this.http.get('- firebase-url -products.json');
+    return this.http.get('/products.json');
   }
 
-  fetchSingleProductFromDB(indexID: number) {
-    return this.http.get(`- firebase-url -products/${indexID}.json`);
+  fetchSingleProductFromDB(indexID: string) {
+    return this.http.get(`/products/${indexID}.json`);
   }
 
 
@@ -60,7 +60,6 @@ export class ProductsService {
 
   setAllProducts(fetchedProducts: Product[]) {
     this.allProducts = fetchedProducts;
-    console.log('asdasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
   }
 
   getAllProducts() {
@@ -68,10 +67,10 @@ export class ProductsService {
   }
 
   // get max 3 similar products sorted from high price > low
-  getSimilarProducts(prodType: string, prodId: number) {
+  getSimilarProducts(prodType: string, prodId: string) {
     const SIMILAR_PRODUCTS = this.getAllProducts().sort((a, b) => b.price - a.price);
     return SIMILAR_PRODUCTS.filter((p) => {
-      return p.id !== +prodId && p.type === prodType;
+      return p.id !== prodId && p.type === prodType;
     }).slice(0, 3); // get max 3 items
   }
 

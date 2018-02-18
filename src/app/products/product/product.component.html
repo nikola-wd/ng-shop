@@ -8,7 +8,7 @@
     <div class="card">
       <header class="card-header">
         <p class="card-header-title">
-          {{ product ? product.name : 'loading' }}
+          {{ product ? product?.name : 'loading' }}
         </p>
         <span class="card-header-icon">
           <small>{{ product ? (product.price | currency) : 'loading' }}</small>
@@ -16,7 +16,7 @@
       </header>
       <div class="card-image">
         <figure class="image is-4by3">
-          <img [src]="product ? product.imagePath : 'http://via.placeholder.com/500x500'" [alt]="product.name" />
+          <img [src]="product ? product.imagePath : 'http://via.placeholder.com/500x500'" [alt]="product?.name" />
         </figure>
       </div>
     </div>

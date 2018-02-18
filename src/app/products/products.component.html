@@ -9,7 +9,7 @@
 
 
 
-      <div *ngIf="((products | filter:filterBy) | search: searchText).length > 0">
+      <ng-template [ngIf]="((products | filter:filterBy) | search: searchText).length > 0">
         <!-- grid layout -->
         <div class="columns is-multiline" *ngIf="layoutMode">
           <app-product-card class="column is-half-tablet is-one-third-fullhd" *ngFor="let product of (products | filter:filterBy) | search: searchText"
@@ -31,13 +31,10 @@
             <app-product-list-item class="tr" *ngFor="let product of (products | filter:filterBy) | search: searchText" [product]="product"></app-product-list-item>
           </tbody>
         </table>
-      </div>
+      </ng-template>
 
 
       <h2 *ngIf="((products | filter:filterBy) | search: searchText).length <= 0 && !isLoading">No results for your search, try resetting your filters</h2>
-
-
-
 
 
   </div>

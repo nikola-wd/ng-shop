@@ -23,12 +23,20 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.prodService.fetchProductsFromDB().subscribe(
       (response: Response) => {
+        const adjustedFetchedProducts = [];
+
         const fetchedProducts = response.json();
-        this.prodService.setAllProducts(fetchedProducts);
+        for (const prod in fetchedProducts) {
+          const prodToAdd = fetchedProducts[prod];
+          prodToAdd.id = prod;
+          adjustedFetchedProducts.push(prodToAdd);
+        }
+        this.prodService.setAllProducts(adjustedFetchedProducts);
         this.products = this.prodService.getAllProducts();
         this.isLoading = false;
       }
     );
+
     this.filterBy = this.prodService.getFilter();
     this.searchText = this.prodService.getSearchFilter();
     this.layoutMode = this.prodService.getLayout();
