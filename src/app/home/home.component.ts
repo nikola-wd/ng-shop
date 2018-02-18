@@ -15,4 +15,17 @@ export class HomeComponent implements OnInit {
   }
 
 
+  // addItem() {
+  //   const newItem = {
+  //     "description": "Brown Leather Boots Lorem ipsum dolor sit amet consectetur adipisicing elit.Enim itaque molestiae, obcaecati veniam nobis sunt. Deserunt incidunt est adipisci ea doloremque sunt non animi? Consequatur sed enim aperiam reiciendis nihil! Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim itaque molestiae, obcaecati veniam nobis sunt. Deserunt incidunt est adipisci ea doloremque sunt non animi? Consequatur sed enim aperiam reiciendis nihil! Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim itaque molestiae, obcaecati veniam nobis sunt. Deserunt incidunt est adipisci ea doloremque sunt non animi? Consequatur sed enim aperiam reiciendis nihil! Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim itaque molestiae, obcaecati veniam nobis sunt. Deserunt incidunt est adipisci ea doloremque sunt non animi? Consequatur sed enim aperiam reiciendis nihil!",
+  //     "id": 6,
+  //     "imagePath": "assets/images/shoes2.jpg",
+  //     "imagePathSm": "assets/images/shoes2--sm.jpg",
+  //     "name": "Brown Leather Boots",
+  //     "price": 79,
+  //     "qty": 1,
+  //     "type": "shoes"
+  //   };
+
+
 }

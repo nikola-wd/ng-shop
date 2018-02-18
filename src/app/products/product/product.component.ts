@@ -1,6 +1,6 @@
 // import { Component, OnInit, DoCheck } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 
 import { Product } from '../product.model';
@@ -18,7 +18,11 @@ export class ProductComponent implements OnInit {
   similarProducts: Product[];
   isLoading = true;
 
-  constructor(private route: ActivatedRoute, private prodService: ProductsService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private prodService: ProductsService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.initProductSingleView();
@@ -34,11 +38,13 @@ export class ProductComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.prodService.fetchSingleProductFromDB(this.id).subscribe(
       (response: Response) => {
+        console.log(response.json());
+        if (response.json() === null) this.router.navigate(['/products']);
         this.product = response.json();
         this.product.id = this.id;
         this.isLoading = false;
         // this.getSimilarProducts(this.product.type, this.product.id);
-      }
+      },
     );
   }
 
