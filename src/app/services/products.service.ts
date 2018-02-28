@@ -1,7 +1,11 @@
+import { ToastyNotificationsService } from './toasty-notifications.service';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { Http, Response } from '@angular/http';
-import { ToastyService, ToastyConfig, ToastyComponent, ToastOptions, ToastData } from 'ng2-toasty';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
 
 
 import { Product } from '../products/product.model';
@@ -25,16 +29,40 @@ export class ProductsService {
 
   constructor(
     private router: Router,
-    private toastyService: ToastyService,
-    private http: Http
+    private httpClient: HttpClient,
+    private toastyNotifications: ToastyNotificationsService
   ) {}
 
-  fetchProductsFromDB() {
-    return this.http.get('/products.json');
+  fetchProductsFromDB(): Observable<any> {
+    return this.httpClient.get(`${environment.apiBase}/products.json`)
+      .map(productSingle => {
+        const adjustedFetchedProducts: any[] = [];
+        for (const key in productSingle) {
+          if (productSingle.hasOwnProperty(key)) {
+            const prodToAdd = productSingle[key];
+            prodToAdd.id = key;
+            adjustedFetchedProducts.push(prodToAdd);
+          }
+        }
+        return adjustedFetchedProducts;
+      });
   }
 
-  fetchSingleProductFromDB(indexID: string) {
-    return this.http.get(`/products/${indexID}.json`);
+
+  fetchSingleProductFromDB(indexID: string): Observable<any> {
+    return this.httpClient.get(`${environment.apiBase}/products/${indexID}.json`)
+      .map(singleProduct => {
+        if (singleProduct === null) {
+          this.router.navigate(['/products']);
+          this.toastyNotifications.addToast(false, '', false, true);
+          throw new Error('Product not found');
+        }
+        const adjustedProduct = {
+          ...singleProduct,
+          id: indexID
+        };
+        return adjustedProduct;
+      });
   }
 
 
@@ -85,7 +113,7 @@ export class ProductsService {
     this.cartAdditionEmitter.emit(this.cartAddedProducts);
     this.calculateCartTotal();
     this.cartTotalEmitter.emit(this.cartTotal);
-    this.addToast(false, product.name, true);
+    this.toastyNotifications.addToast(false, product.name, true);
   }
 
   getCartAddedProducts() {
@@ -121,7 +149,7 @@ export class ProductsService {
     this.cartAdditionEmitter.emit(this.cartAddedProducts);
     this.calculateCartTotal();
     this.cartTotalEmitter.emit(this.cartTotal);
-    this.addToast(false, removedProductName, false);
+    this.toastyNotifications.addToast(false, removedProductName, false);
   }
 
   emptyCart() {
@@ -133,7 +161,7 @@ export class ProductsService {
     this.cartTotal = 0;
     this.cartTotalEmitter.emit(this.cartTotal);
     this.router.navigate(['/products']);
-    this.addToast(true);
+    this.toastyNotifications.addToast(true);
   }
 
 
@@ -147,20 +175,5 @@ export class ProductsService {
     this.layoutModeEmitter.emit(this.layoutMode);
   }
 
-
-
-
-
-
-  addToast(cartEmptied = false, prodName: string = '', alertType = false) {
-    const toastOptions: ToastOptions = {
-      title: '',
-      msg: cartEmptied ? 'Cart emptied' : `${prodName}, ${alertType ? 'added to' : 'removed from'} cart`,
-      showClose: true,
-      timeout: 5000,
-      theme: 'material',
-    };
-    alertType ? this.toastyService.success(toastOptions) : this.toastyService.error(toastOptions);
-  }
 
 }

@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Product } from './product.model';
 import { ProductsService } from '../services/products.service';
-import { Response } from '@angular/http';
 
 @Component({
   selector: 'app-products',
@@ -16,26 +15,19 @@ export class ProductsComponent implements OnInit, OnDestroy {
   layoutMode: boolean; // true for grid, false for list
   isLoading = true;
 
-  constructor(
-    private prodService: ProductsService,
-  ) { }
+  constructor( private prodService: ProductsService ) {}
 
   ngOnInit() {
     this.prodService.fetchProductsFromDB().subscribe(
-      (response: Response) => {
-        const adjustedFetchedProducts = [];
-
-        const fetchedProducts = response.json();
-        for (const prod in fetchedProducts) {
-          const prodToAdd = fetchedProducts[prod];
-          prodToAdd.id = prod;
-          adjustedFetchedProducts.push(prodToAdd);
-        }
-        this.prodService.setAllProducts(adjustedFetchedProducts);
+      products => {
+        this.prodService.setAllProducts(products);
         this.products = this.prodService.getAllProducts();
-        this.isLoading = false;
-      }
+      },
+      err => console.log(err),
+      () => this.isLoading = false
     );
+
+
 
     this.filterBy = this.prodService.getFilter();
     this.searchText = this.prodService.getSearchFilter();

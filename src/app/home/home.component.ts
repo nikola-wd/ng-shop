@@ -27,5 +27,10 @@ export class HomeComponent implements OnInit {
   //     "type": "shoes"
   //   };
 
-
+  //   this.http.post('https://ngshop-27da4.firebaseio.com/products.json', newItem).subscribe(
+  //     (response: Response) => {
+  //       console.log(response);
+  //     }
+  //   );
+  // }
 }

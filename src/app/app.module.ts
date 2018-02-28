@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ToastyModule } from 'ng2-toasty';
 
@@ -23,6 +23,7 @@ import { FiltersComponent } from './products/filters/filters.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { ProductListItemComponent } from './products/product-list-item/product-list-item.component';
+import { ToastyNotificationsService } from './services/toasty-notifications.service';
 
 
 const appRoutes: Routes = [
@@ -58,10 +59,11 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     ToastyModule.forRoot(),
     FormsModule,
-    HttpModule
+    HttpClientModule
   ],
   providers: [
-    ProductsService
+    ProductsService,
+    ToastyNotificationsService
   ],
   bootstrap: [AppComponent]
 })

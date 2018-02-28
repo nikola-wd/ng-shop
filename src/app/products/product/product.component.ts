@@ -1,7 +1,7 @@
+import { ToastyNotificationsService } from './../../services/toasty-notifications.service';
 // import { Component, OnInit, DoCheck } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Response } from '@angular/http';
 
 import { Product } from '../product.model';
 import { ProductsService } from '../../services/products.service';
@@ -20,8 +20,7 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private prodService: ProductsService,
-    private router: Router
+    private prodService: ProductsService
   ) { }
 
   ngOnInit() {
@@ -37,14 +36,12 @@ export class ProductComponent implements OnInit {
   initProductSingleView() {
     this.id = this.route.snapshot.params['id'];
     this.prodService.fetchSingleProductFromDB(this.id).subscribe(
-      (response: Response) => {
-        console.log(response.json());
-        if (response.json() === null) this.router.navigate(['/products']);
-        this.product = response.json();
-        this.product.id = this.id;
-        this.isLoading = false;
+      product => {
+        this.product = product;
         // this.getSimilarProducts(this.product.type, this.product.id);
       },
+      err => console.error(err),
+      () => this.isLoading = false
     );
   }
 
@@ -54,8 +51,8 @@ export class ProductComponent implements OnInit {
   }
 
 
-  getSimilarProducts(prodType: string, prodId: string) {
-    this.similarProducts = this.prodService.getSimilarProducts(prodType, prodId);
-  }
+  // getSimilarProducts(prodType: string, prodId: string) {
+  //   this.similarProducts = this.prodService.getSimilarProducts(prodType, prodId);
+  // }
 
 }
